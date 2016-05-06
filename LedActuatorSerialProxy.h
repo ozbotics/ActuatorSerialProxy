@@ -3,6 +3,7 @@
   
 #include <Arduino.h>
 #include <ActuatorSerialProxy.h>
+#include <SerialMessageStream.h>
 
 #define PROXY_BUFF_SIZE 8
 
@@ -14,11 +15,11 @@ class LedActuatorSerialProxy : public ActuatorSerialProxy {
       char _request[PROXY_BUFF_SIZE];
       
       sprintf(_request, "L,%d,%d", _id, enabled);
-      _stream->writeRequest(_request);
+      _messageStream->writeRequest(_request);
     }
     
   public:
-    LedActuatorSerialProxy(HardwareSerial& serial, byte id) : _id(id), ActuatorSerialProxy(serial) {}
+    LedActuatorSerialProxy(SerialMessageStream* messageStream, byte id) : _id(id), ActuatorSerialProxy(messageStream) {}
     
     virtual void start() {
       _setEnabled(true);

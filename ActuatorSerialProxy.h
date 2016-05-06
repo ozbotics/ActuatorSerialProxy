@@ -7,18 +7,12 @@
 
 class ActuatorSerialProxy : public Actuator {
   protected:
-    SerialMessageStream* _stream;
+    SerialMessageStream* _messageStream;
 
   public:
 
-    ActuatorSerialProxy(HardwareSerial& stream) : Actuator() {
-      this->_stream = new SerialMessageStream(stream);
-    }
-    
-    ~ActuatorSerialProxy()  {
-      delete _stream;
-    }
-    
+    ActuatorSerialProxy(SerialMessageStream* messageStream) : _messageStream(messageStream), Actuator() {}
+        
     virtual void start()=0;
     virtual void stop()=0;
 };
