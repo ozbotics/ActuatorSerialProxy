@@ -23,18 +23,16 @@ class ActuatorSerialProxy : public Actuator {
     * Constructor
     *
     * @param messageStream The shared SerialMessageStream object. 
-   */
+    */
     ActuatorSerialProxy(SerialMessageStream* messageStream) : _messageStream(messageStream), Actuator() {}
 
    /**
     * start the actuator
-    * @return nothing
     */  
     virtual void start()=0;
     
    /**
     * stop the actuator
-    * @return nothing
     */ 
     virtual void stop()=0;
 };

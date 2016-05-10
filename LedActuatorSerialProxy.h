@@ -9,7 +9,7 @@
 #include <ActuatorSerialProxy.h>
 #include <SerialMessageStream.h>
 
-#define PROXY_BUFF_SIZE 8
+#define PROXY_BUFF_SIZE 8  /**< const  PROXY_BUFF_SIZE size of the request buffer */ 
 
 /**
  *  SerialProxy for LedActuator
@@ -23,7 +23,6 @@ class LedActuatorSerialProxy : public ActuatorSerialProxy {
     * start the timer, completing in dur milliseconds
     *
     * @param enabled Turn Off/On LedActuator
-    * @return nothing
     */  
     inline void _setEnabled(bool enabled) {
       char _request[PROXY_BUFF_SIZE];
@@ -35,14 +34,15 @@ class LedActuatorSerialProxy : public ActuatorSerialProxy {
   public:
 
    /**
-    *  Constructor
-    * @param enabled Turn Off/On LedActuator
+    * Constructor
+    *
+    * @param messageStream Pointer to the SerialMessageStream
+    * @param id The remote actuator_id 
     */
     LedActuatorSerialProxy(SerialMessageStream* messageStream, byte id) : _id(id), ActuatorSerialProxy(messageStream) {}
     
    /**
     * start the actuator
-    * @return nothing
     */  
     virtual void start() {
       _setEnabled(true);
@@ -50,7 +50,6 @@ class LedActuatorSerialProxy : public ActuatorSerialProxy {
     
    /**
     * stop the actuator
-    * @return nothing
     */ 
     virtual void stop() {
       _setEnabled(false);
