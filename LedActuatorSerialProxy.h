@@ -7,13 +7,13 @@
   
 #include <Arduino.h>
 #include <ActuatorSerialProxy.h>
-#include <SerialMessageStream.h>
+#include <MessageStream.h>
 
 #define PROXY_BUFF_SIZE 8  /**< const  PROXY_BUFF_SIZE size of the request buffer */ 
 
 /**
  *  SerialProxy for LedActuator
- *  Provides drop in replacement for Local LedActuator(s), proxying a remote LedActuator, communicating over a SerialMessageStream
+ *  Provides drop in replacement for Local LedActuator(s), proxying a remote LedActuator, communicating over a MessageStream
  */
 class LedActuatorSerialProxy : public ActuatorSerialProxy {
   protected:
@@ -36,10 +36,10 @@ class LedActuatorSerialProxy : public ActuatorSerialProxy {
    /**
     * Constructor
     *
-    * @param messageStream Pointer to the SerialMessageStream
+    * @param messageStream Pointer to the MessageStream
     * @param id The remote actuator_id 
     */
-    LedActuatorSerialProxy(SerialMessageStream* messageStream, byte id) : _id(id), ActuatorSerialProxy(messageStream) {}
+    LedActuatorSerialProxy(MessageStream* messageStream, byte id) : _id(id), ActuatorSerialProxy(messageStream) {}
     
    /**
     * start the actuator

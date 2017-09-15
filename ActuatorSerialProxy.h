@@ -7,24 +7,24 @@
   
 #include <Arduino.h>
 #include <Actuator.h>
-#include <SerialMessageStream.h>
+#include <MessageStream.h>
 
 /**
  *  Base of all ActuatorSerialProxies
- *  Provides drop in replacement for Local Actuators, proxying a remote Actuator, communicating over a SerialMessageStream
+ *  Provides drop in replacement for Local Actuators, proxying a remote Actuator, communicating over a MessageStream
 */
 class ActuatorSerialProxy : public Actuator {
   protected:
-    SerialMessageStream* _messageStream; /**< protected variable _messageStream  Shared SerialMessageStream object */ 
+    MessageStream* _messageStream; /**< protected variable _messageStream  Shared MessageStream object */ 
 
   public:
   
    /**
     * Constructor
     *
-    * @param messageStream The shared SerialMessageStream object. 
+    * @param messageStream The shared MessageStream object. 
     */
-    ActuatorSerialProxy(SerialMessageStream* messageStream) : _messageStream(messageStream), Actuator() {}
+    ActuatorSerialProxy(MessageStream* messageStream) : _messageStream(messageStream), Actuator() {}
 
    /**
     * start the actuator
